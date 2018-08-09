@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>ID:</strong>
+  <%= @log.id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @log.date %>
+</p>
+
+<p>
+  <strong>Pcount:</strong>
+  <%= @log.pcount %>
+</p>
+
+<p>
+  <strong>Game:</strong>
+  <%= @log.game.name %>
+</p>
+
+<ul>
+	<% for player_score in @log.player_scores %>
+		<li><%= player_score.player.name %>
+			<ul>
+				<% for result in player_score.results %>
+					<li><%= result.score %></li>
+				<% end %>
+			</ul>
+		</li>
+	<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

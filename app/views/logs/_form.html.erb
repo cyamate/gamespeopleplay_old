@@ -1,0 +1,53 @@
+<%= form_with(model: log, local: true) do |form| %>
+  <% if log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(log.errors.count, "error") %> prohibited this log from being saved:</h2>
+
+      <ul>
+      <% log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pcount %>
+    <%= form.number_field :pcount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :game_id %>
+    <%= form.select :game_id, (Game.all.collect {|g| [ g.name, g.id ]}).sort %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :player_scores do |builder| %>
+      <p>
+        <%= builder.label :player_id %>
+        <%= builder.select :player_id, (Player.all.collect {|p| [ p.name, p.id ]}).sort %>
+        <%= builder.label :_destroy, "Delete player" %>
+        <%= builder.check_box :_destroy %>
+      </p>
+
+     <%= form.fields_for :results do |builder2| %>
+        <p>
+          <%= builder2.label :score %>
+          <%= builder2.number_field :score %>
+          <%= builder2.label :_destroy, "Delete score" %>
+         <%= builder2.check_box :_destroy %>
+       </p>
+      <% end %>
+
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
