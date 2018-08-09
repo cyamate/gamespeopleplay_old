@@ -15,15 +15,13 @@ class LogsController < ApplicationController
   # GET /logs/new
   def new
     @log = Log.new
-    6.times do
-      player_score = @log.player_scores.build
-      2.times { player_score.results.build }
-    end
+    6.times { player_score = @log.player_scores.build }
   end
 
   # GET /logs/1/edit
   def edit
     @log = Log.find(params[:id])
+    1.times { player_score = @log.player_scores.build }
   end
 
   # POST /logs
@@ -76,7 +74,6 @@ class LogsController < ApplicationController
     def log_params
       params.require(:log).permit(
         :date, :game_id, :pcount, :game_id, 
-        player_scores_attributes: [:id, :log_id, :player_id, :_destroy, 
-        results_attributes: [:id, :player_score_id, :score, :_destroy]])
+        player_scores_attributes: [:id, :log_id, :player_id, :score, :_destroy])
     end
 end

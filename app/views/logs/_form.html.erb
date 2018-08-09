@@ -33,16 +33,9 @@
         <%= builder.select :player_id, (Player.all.collect {|p| [ p.name, p.id ]}).sort %>
         <%= builder.label :_destroy, "Delete player" %>
         <%= builder.check_box :_destroy %>
+        <%= builder.label :score %>
+        <%= builder.number_field :score %>
       </p>
-
-     <%= form.fields_for :results do |builder2| %>
-        <p>
-          <%= builder2.label :score %>
-          <%= builder2.number_field :score %>
-          <%= builder2.label :_destroy, "Delete score" %>
-         <%= builder2.check_box :_destroy %>
-       </p>
-      <% end %>
 
     <% end %>
   </div>

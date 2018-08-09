@@ -22,13 +22,7 @@
 
 <ul>
 	<% for player_score in @log.player_scores %>
-		<li><%= player_score.player.name %>
-			<ul>
-				<% for result in player_score.results %>
-					<li><%= result.score %></li>
-				<% end %>
-			</ul>
-		</li>
+		<li><%= player_score.player.name %>: <%= player_score.score %></li>
 	<% end %>
 </ul>
 

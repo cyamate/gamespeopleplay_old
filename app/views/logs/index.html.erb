@@ -21,7 +21,14 @@
         <td><%= log.id %></td>
         <td><%= log.pcount %></td>
         <td><%= log.game.name %></td>
-        <td></td>
+        <td>
+          <ul>
+            <% for player_score in log.player_scores %>
+             <li><%= player_score.player.name %>: <%= player_score.score %></li>
+            <% end %>
+            </ul>
+          </td>
+
         <td><%= link_to 'Show', log %></td>
         <td><%= link_to 'Edit', edit_log_path(log) %></td>
         <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
