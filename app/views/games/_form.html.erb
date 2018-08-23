@@ -1,7 +1,7 @@
 <%= form_with(model: game, local: true) do |form| %>
   <% if game.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+    <div id="error_explanation" class="form-group row">
+      <h4><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h4>
 
       <ul>
       <% game.errors.full_messages.each do |message| %>
@@ -11,17 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-4">
+       <%= form.text_field :name, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :pcount %>
-    <%= form.number_field :pcount %>
+  <div class="form-group">
+    <%= form.label :pcount, 'Player count', class: 'col-sm-2 col-form-label' %>
+    <div class="col-sm-4">
+      <%= form.number_field :pcount, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+<br>
+  <div class="form-group">
+   <%= button_tag(type: 'submit', class: "btn btn-dark") do %>Submit<% end %>
   </div>
+
+
 <% end %>

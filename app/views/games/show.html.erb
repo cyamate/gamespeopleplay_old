@@ -1,3 +1,5 @@
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -6,9 +8,12 @@
 </p>
 
 <p>
-  <strong>Pcount:</strong>
+  <strong>Player count:</strong>
   <%= @game.pcount %>
 </p>
 
+
 <%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%= link_to 'Back to Games', games_path %>
+
+</div>

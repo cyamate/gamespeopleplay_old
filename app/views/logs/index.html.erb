@@ -1,24 +1,31 @@
+<head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+</head>
+
+<div class="container">
+
 <p id="notice"><%= notice %></p>
 
-<h1>Logs</h1>
+<h4><i class="fas fa-trophy"></i> LOGS</h4>
 
-<table>
-  <thead>
+<table class="table table-borderless table-hover">
+  <thead class="thead-light">
     <tr>
-      <th>Date</th>
-      <th>ID</th>
-      <th>Pcount</th>
-      <th>Game</th>
-      <th>Players</th>
-      <th colspan="3"></th>
+      <th scope="col">#</th>
+      <th scope="col">Date</th>
+      <th scope="col">Player count</th>
+      <th scope="col">Game</th>
+      <th scope="col">Players</th>
+      <th scope="col">Average</th>
+      <th scope="col" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @logs.each do |log| %>
       <tr>
+        <th scope="row" style="width: 40px;"><%= log.id %></th>
         <td><%= log.date %></td>
-        <td><%= log.id %></td>
         <td><%= log.pcount %></td>
         <td><%= log.game.name %></td>
         <td>
@@ -26,17 +33,21 @@
             <% for player_score in log.player_scores %>
              <li><%= player_score.player.name %>: <%= player_score.score %></li>
             <% end %>
-            </ul>
-          </td>
-
-        <td><%= link_to 'Show', log %></td>
-        <td><%= link_to 'Edit', edit_log_path(log) %></td>
-        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </ul>
+        </td>
+        <td><%= log.player_scores.average(:score) %>
+        <td style="width: 45px;"><%= link_to log do %><i class="far fa-eye fa-fw"></i><% end %></td>
+        <td style="width: 45px;"><%= link_to edit_log_path(log) do %><i class="fas fa-edit fa-fw"></i><% end %></td>
+        <td style="width: 45px;"><%= link_to log, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="far fa-trash-alt fa-fw"></i><% end %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
+<p align="right">
+  <button type="button" class="btn btn-light btn-sm">
+    <a class="nav-link" href="/logs/new"><i class="fas fa-plus-circle"></i> Log</a>
+  </button>
+</p>
 
-<%= link_to 'New Log', new_log_path %>
+</div>
